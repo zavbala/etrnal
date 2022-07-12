@@ -1,0 +1,32 @@
+query GetProjectSearchResults(
+  $query: query
+  $filter: SearchResultFilter
+  $first: Int!
+  $after: String
+) {
+  search(
+    query: $query
+    type: PROJECT
+    filter: $filter
+    first: $first
+    after: $after
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    nodes {
+      ... on Project {
+        url
+        owners {
+          url
+        }
+        covers {
+          size_original {
+            url
+          }
+        }
+      }
+    }
+  }
+}

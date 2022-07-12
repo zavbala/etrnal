@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+	/*outline: 1px solid red;*/
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+@layer base {
+	body {
+		@apply bg-white;
+	}
+
+	img,
+	small {
+		@apply block;
+	}
+}

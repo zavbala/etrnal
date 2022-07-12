@@ -1,0 +1,6 @@
+.flaskenv
+.pylintrc
+Makefile
+poetry.lock
+pyproject.toml
+tests

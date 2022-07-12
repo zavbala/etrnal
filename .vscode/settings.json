@@ -1,0 +1,11 @@
+{
+  "css.lint.unknownAtRules": "ignore",
+  "css.lint.emptyRules": "ignore",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "python.linting.enabled": true,
+  "python.formatting.provider": "black",
+  "isort.args": ["--profile", "black"]
+}

@@ -1,0 +1,41 @@
+[tool.poetry]
+authors = ["zavbala <sample@example.com>"]
+description = ""
+name = "api"
+version = "0.1.0"
+
+[tool.poetry.dependencies]
+Flask = "^2.1.1"
+Flask-Caching = "^1.10.1"
+Flask-Cors = "^3.0.10"
+Flask-JWT-Extended = "^4.3.1"
+beautifulsoup4 = "^4.11.1"
+flask-apispec = "^0.11.1"
+furl = "^2.1.3"
+glom = "^22.1.0"
+gql = {extras = ["all"], version = "^3.2.0"}
+gunicorn = "^20.1.0"
+httpx = "^0.22.0"
+instagram-scraper = "^1.10.6"
+lxml = "^4.8.0"
+parsel = "^1.6.0"
+pyfiglet = "^0.8.post1"
+python = "^3.10"
+python-dotenv = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+black = "^22.3.0"
+isort = "^5.10.1"
+pylint = "^2.13.7"
+pytest = "^7.1.2"
+
+[tool.pytest.ini_options]
+addopts = "-s"
+minversion = "6.0"
+testpaths = [
+  "tests",
+]
+
+[build-system]
+build-backend = "poetry.core.masonry.api"
+requires = ["poetry-core>=1.0.0"]

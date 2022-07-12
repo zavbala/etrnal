@@ -1,0 +1,5 @@
+localhost {
+	root * /srv
+	file_server
+	# reverse_proxy /api/* 127.0.0.1:5000
+}

@@ -1,0 +1,18 @@
+services:
+
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    container_name: eternal_api
+    ports:
+      - '5000:5000'
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: eternal_client
+    ports:
+      - '80:80'
+      - '443:443'
