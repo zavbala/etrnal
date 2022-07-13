@@ -28,7 +28,9 @@
 
 <script lang="ts">
 	import { browser } from '$app/env';
+	import Controls from '$lib/components/Controls.svelte';
 	import Grid from '$lib/components/Grid.svelte';
+	import { ENDPOINT } from '$lib/constant';
 	import { handleHotKeys, handleMouseWheel } from '$lib/events';
 	import { stored } from '$lib/stores/preview';
 	import type { Direction, Record } from '$lib/types';
@@ -57,7 +59,7 @@
 
 	const fetcher = async () => {
 		const args = [`page=${page}`, `page_id=${nextPage}`];
-		const res = await fetch(`${import.meta.env.VITE_ETRNAL_SERVICE}/api/items?${args.join('&')}`, {
+		const res = await fetch(`${ENDPOINT}/api/items?${args.join('&')}`, {
 			method: 'GET',
 			headers: new Headers({
 				'Content-Type': 'application/json'
@@ -74,16 +76,14 @@
 		}
 	};
 
-	$: {
-		if (browser && $stored.infinity) {
+	$: if (browser) {
+		document.body.style.overflow = $stored.infinity ? 'hidden' : '';
+
+		if ($stored.infinity) {
 			window.scrollTo({
 				top: y
 			});
 		}
-	}
-
-	$: if (browser) {
-		document.body.style.overflow = $stored.infinity ? 'hidden' : '';
 	}
 
 	$: if (axisY) {
@@ -103,11 +103,11 @@
 	bind:scrollY={axisY}
 	on:keydown={(event) => handleHotKeys(event, scrolling)}
 	on:wheel={(event) => handleMouseWheel(event, scrolling)}
-	on:contextmenu|preventDefault
 />
 
 <svelte:head>
-	<title>etrnal | Infinity Design</title>
+	<title>ETRNAL | Infinity Design</title>
 </svelte:head>
 
+<Controls />
 <Grid children={records} />

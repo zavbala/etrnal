@@ -2,6 +2,6 @@
 	import '../app.css';
 </script>
 
-<main class="container mx-auto">
+<main class="max-w-7xl mx-auto md:px-4 sm:px-5">
 	<slot />
 </main>

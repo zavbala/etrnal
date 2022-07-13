@@ -3,7 +3,8 @@ import { writable } from 'svelte/store';
 const initValues = {
 	infinity: false,
 	darkMode: false,
-	fullScreen: false
+	fullScreen: false,
+	isScrolling: false
 };
 
 export const stored = writable(initValues);
