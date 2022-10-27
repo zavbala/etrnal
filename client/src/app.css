@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 * {
-	/*outline: 1px solid red;*/
+	/* outline: 1px solid red; */
 }
 
 html {
@@ -12,9 +12,10 @@ html {
 
 @layer base {
 	body {
-		@apply bg-white;
+		@apply bg-white text-black;
 	}
 
+	a,
 	img,
 	small {
 		@apply block;

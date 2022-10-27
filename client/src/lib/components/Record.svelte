@@ -10,38 +10,36 @@
 </script>
 
 <article
-	class="group col-span-1 p-3 {$stored.infinity &&
-		'h-screen flex align-items justify-center flex-col'}"
+	class="col-span-1 flex flex-col gap-y-5
+	{$stored.infinity && 'md:p-0 p-5 h-screen justify-center'}"
 >
-	<img
-		on:dragstart|preventDefault
-		on:click={() => window.open(cover, '_blank')}
-		loading="lazy"
-		title="Full Size"
-		alt={'Art by ' + author}
-		src={$stored.infinity ? cover : resizer(cover)}
-		class="rounded-lg cursor-zoom-in {$stored.infinity && 'mx-auto h-full'}"
-	/>
+	<a href={cover} target="_blank" rel="noreferrer">
+		<img
+			loading="lazy"
+			title="Full Size"
+			src={resizer(cover)}
+			alt={'Art by ' + author}
+			on:dragstart|preventDefault
+			class="rounded-lg cursor-zoom-in {$stored.infinity && 'mx-auto h-full'}"
+		/>
+	</a>
 
-	<div
-		class="mt-3 {!$stored.infinity &&
-			'group-hover:opacity-100 opacity-0 transition-all duration-200'} 
-			flex justify-between align-items md:opacity-100"
-	>
-		<span
+	<div class="flex justify-between">
+		<button
 			title="Author"
+			on:click={() => window.open(owner, '_blank')}
 			class="dark:text-white text-black uppercase underline underline-offset-8 
 			decoration-wavy font-body md:decoration-1 cursor-pointer decoration-blue-700"
-			on:click={() => window.open(owner, '_blank')}
 		>
 			{author}
-		</span>
+		</button>
+
 		<AcButton
 			size="sm"
 			title="Source"
 			icon="arrow-trend-up"
 			action={() => window.open(source, '_blank')}
-			className="transform hover:scale-90 hover:bg-white border-2 border-black dark:border-0"
+			className="transform hover:scale-105 duration-100 hover:bg-white border-2 border-black dark:border-0"
 		/>
 	</div>
 </article>

@@ -7,9 +7,8 @@
 </script>
 
 <section
-	class="grid justify-items-center {$stored.infinity
-		? 'grid-cols-1'
-		: 'grid-cols-3 gap-5 my-10 md:grid-cols-2 sm:grid-cols-1'}"
+	class="grid justify-items-center md:px-0 px-4
+	{$stored.infinity ? 'grid-cols-1' : 'md:grid-cols-2 lg:grid-cols-3 gap-5 my-10 grid-cols-1'}"
 >
 	{#each children as record}
 		<Card {record} />

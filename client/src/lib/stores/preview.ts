@@ -1,6 +1,7 @@
 import { writable } from 'svelte/store';
 
 const initValues = {
+	y: 0,
 	infinity: false,
 	darkMode: false,
 	fullScreen: false,

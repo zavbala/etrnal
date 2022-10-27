@@ -1,8 +1,8 @@
+tests
 README.md
 .eslint.cjs
 .gitignore
 .prettierrc
 node_modules
-tests
-playwright.config.ts 
 tsconfig.json
+playwright.config.ts 

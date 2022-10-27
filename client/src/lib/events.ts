@@ -8,7 +8,7 @@ export const handleHotKeys = (event: KeyboardEvent, callback: (value: Direction)
 		ArrowDown: 'Down'
 	}[key] as Direction;
 
-	callback(action);
+	if (action) callback(action);
 };
 
 export const handleMouseWheel = (event: WheelEvent, callback: (value: Direction) => void) => {
