@@ -5,41 +5,51 @@
 	import { resizer } from '$lib/utils';
 
 	export let record: Record;
-	const { cover, owner, source } = record;
+	const { cover, owner } = record;
 	const author = owner.split('/')[3];
+
+	let showControls = false;
+	const infinity = 'flex flex-col justify-center items-end gap-y-2 h-screen';
+
+	const actions = {
+		owner: {
+			title: 'Author',
+			icon: 'user'
+		},
+		source: {
+			title: 'Source',
+			icon: 'arrow-trend-up'
+		},
+		cover: {
+			title: 'Full Size',
+			icon: 'magnifying-glass-plus'
+		}
+	};
+
+	const external = (key: string) => window.open(record[key as keyof typeof actions], '_blank');
 </script>
 
 <article
-	class="col-span-1 flex flex-col gap-y-5
-	{$stored.infinity && 'md:p-0 p-5 h-screen justify-center'}"
+	on:mouseenter={() => (showControls = true)}
+	on:mouseleave={() => (showControls = false)}
+	class="col-span-1 relative {$stored.infinity && infinity}"
 >
-	<a href={cover} target="_blank" rel="noreferrer">
-		<img
-			loading="lazy"
-			title="Full Size"
-			src={resizer(cover)}
-			alt={'Art by ' + author}
-			on:dragstart|preventDefault
-			class="rounded-lg cursor-zoom-in {$stored.infinity && 'mx-auto h-full'}"
-		/>
-	</a>
+	<img
+		alt=""
+		loading="lazy"
+		class="rounded-lg"
+		src={resizer(cover)}
+		title="Art by {author}"
+		on:dragstart|preventDefault
+	/>
 
-	<div class="flex justify-between">
-		<button
-			title="Author"
-			on:click={() => window.open(owner, '_blank')}
-			class="dark:text-white text-black uppercase underline underline-offset-8 
-			decoration-wavy font-body md:decoration-1 cursor-pointer decoration-blue-700"
-		>
-			{author}
-		</button>
-
-		<AcButton
-			size="sm"
-			title="Source"
-			icon="arrow-trend-up"
-			action={() => window.open(source, '_blank')}
-			className="transform hover:scale-105 duration-100 hover:bg-white border-2 border-black dark:border-0"
-		/>
+	<div
+		class="opacity-100 bg-black/60 flex items-center rounded-2xl transition-all duration-150 p-2
+		{showControls ? 'lg:opacity-100 z-40' : 'lg:opacity-0 z-0'}
+		{$stored.infinity ? 'static' : 'absolute top-3 right-3'}"
+	>
+		{#each Object.entries(actions) as [key, props]}
+			<AcButton size="sm" className="text-white w-9 h-9" action={() => external(key)} {...props} />
+		{/each}
 	</div>
 </article>

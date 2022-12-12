@@ -10,13 +10,28 @@ html {
 	scroll-behavior: smooth;
 }
 
+::selection {
+	color: #fff;
+	background-color: #000;
+}
+
 @layer base {
 	body {
-		@apply bg-white text-black;
+		@apply bg-white text-black font-body;
 	}
 
+	input {
+		@apply bg-transparent appearance-none w-full;
+	}
+
+	input:focus {
+		outline: none;
+	}
+
+	i,
 	a,
 	img,
+	span,
 	small {
 		@apply block;
 	}

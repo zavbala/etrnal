@@ -1,10 +1,10 @@
+import { ENDPOINT } from '$lib/constant';
 import type { DataIn } from '$lib/types';
 import type { LoadEvent } from '@sveltejs/kit';
 
 export async function load({ fetch }: LoadEvent) {
-	const response = await fetch(
-		`${import.meta.env.VITE_ETRNAL_SERVICE}/api/items?page=1&page_id=NDk=`
-	);
+	const params = new URLSearchParams({ page: '1', page_id: 'NDk=' });
+	const response = await fetch(`${ENDPOINT}/api/items?${params.toString()}`);
 
 	if (response.ok) {
 		const { page_id, records } = (await response.json()) as DataIn;

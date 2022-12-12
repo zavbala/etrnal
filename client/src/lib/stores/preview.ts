@@ -1,11 +1,13 @@
 import { writable } from 'svelte/store';
+import { browser } from '$app/environment';
 
 const initValues = {
 	y: 0,
 	infinity: false,
 	darkMode: false,
 	fullScreen: false,
-	isScrolling: false
+	isScrolling: false,
+	showSpotlight: false
 };
 
 export const stored = writable(initValues);
@@ -17,3 +19,11 @@ export const toggle = (key: Keys) => {
 		return { ...value, [key]: !value[key] };
 	});
 };
+
+stored.subscribe((value) => {
+	// Store values in localStorage
+	if (browser) {
+		const color = value.darkMode ? 'dark' : 'light';
+		localStorage.setItem('theme', color);
+	}
+});

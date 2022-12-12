@@ -4,7 +4,7 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			body: ['IBM Plex Mono', 'monospace']
+			body: ['Inter', 'sans-serif'],
 		},
 		extend: {}
 	},

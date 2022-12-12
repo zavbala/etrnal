@@ -1,8 +1,8 @@
 <script lang="ts">
 	export let icon: string;
-	export let size: 'sm' | 'md' | 'lg' = 'md';
 	export let className = '';
-	export let action: () => void;
+	export let action: () => void = () => {};
+	export let size: 'sm' | 'md' | 'lg' = 'md';
 
 	const element = {
 		type: 'button'
@@ -19,9 +19,9 @@
 
 <button
 	on:click={action}
-	class="{className} rounded-full w-12 h-12 {sizes} hover:bg-gray-100 bg-white"
+	class="flex items-center justify-center {className}"
 	{...element}
 	{...$$props}
 >
-	<i class="{blacklist.includes(icon) ? 'fa-brands' : 'fa-solid'} fa-{icon} text-black block" />
+	<i class="{blacklist.includes(icon) ? 'fa-brands' : 'fa-solid'} fa-{icon} {sizes}" />
 </button>

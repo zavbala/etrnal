@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Controls from '$lib/components/Controls.svelte';
 	import Grid from '$lib/components/Grid.svelte';
 	import { ENDPOINT } from '$lib/constant';
 	import { handleHotKeys, handleMouseWheel } from '$lib/events';
@@ -75,5 +74,4 @@
 	<title>ETRNAL | Infinity Design</title>
 </svelte:head>
 
-<Controls />
 <Grid children={records} />
