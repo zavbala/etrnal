@@ -1,0 +1,47 @@
+{
+  "dribbble": {
+    "type": "html",
+    "base_url": "https://dribbble.com",
+    "feed": "/shots/popular",
+    "relative": true,
+    "categories": [
+      "print",
+      "mobile",
+      "branding",
+      "animation",
+      "typography",
+      "web-design",
+      "illustration",
+      "product-design"
+    ],
+    "schema": {
+      "cover": "img::attr(src)",
+      "source": "a.shot-thumbnail-link::attr(href)",
+      "owner": "a.hoverable::attr(href)"
+    },
+    "content": {
+      "layout": "ol.shots-grid",
+      "children": "li.shot-thumbnail-container"
+    }
+  },
+  "behance": {
+    "type": "gql",
+    "entry": {
+      "next": "search.pageInfo.endCursor",
+      "nodes": "search.nodes"
+    },
+    "url": "https://www.behance.net/v3/graphql",
+    "categories": [],
+    "headers": {
+      "X-Requested-With": "XMLHttpRequest",
+      "Cookie": "bcp=6f065de4-c22f-4d92-ab08-d04f462472dd",
+      "X-BCP": "6f065de4-c22f-4d92-ab08-d04f462472dd"
+    },
+    "variables": { "filter": {}, "first": 48, "after": "NDk=" },
+    "schema": {
+      "cover": "covers.size_original.url",
+      "source": "url",
+      "owner": "owners.0.url"
+    }
+  }
+}

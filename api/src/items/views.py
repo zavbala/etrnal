@@ -1,28 +1,53 @@
 import random
-
+import json
 from flask import Blueprint, jsonify
+from src import utils, settings
 from webargs import fields
 from webargs.flaskparser import use_args
 
-from src import strings, utils
-
+config = settings.Config()
 blueprint = Blueprint("items", __name__)
 
 
 @blueprint.route("/api/items")
-@use_args({"page": fields.Int(), "page_id": fields.Str()}, location="query")
+@use_args(
+    {"page": fields.Int(), "page_id": fields.Str(), "providers": fields.Str()},
+    location="query",
+)
 def get_items(args):
-    """Mix"""
+    """Get feed / popular items"""
 
     data = []
-    dribbble = strings.HTML_SOURCES["dribbble"]
+    page = args["page"]
+    page_id = args["page_id"]
 
-    n_page = args["page"] * dribbble["payload"]
-    shots = list(utils.get_records_from_html(n_page, **dribbble))
-    data.extend(shots)
+    try:
+        providers = args["providers"].split(",")
+    except KeyError:
+        providers = "all"
 
-    next_page, nodes = utils.get_records_from_gql("behance", args["page_id"])
-    data.extend(nodes)
+    with open(config.APP_DIR / "data/Sources.json", "r", encoding="UTF-8") as file:
+        plain = file.read()
+        sources = json.loads(plain)
+
+    for key, source in sources.items():
+        records = []
+
+        if source["type"] == "html":
+
+            url = source["base_url"] + source["feed"]
+            records = utils.get_records_from_html(
+                url=url, params={"page": page * 1}, **source
+            )
+
+        if source["type"] == "gql":
+
+            source["variables"]["after"] = page_id
+            next_page, records = utils.get_records_from_gql(
+                {"provider": key, "kind": "feed"}, source
+            )
+
+        data.extend(records)
 
     random.shuffle(data)
 

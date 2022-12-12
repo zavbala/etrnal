@@ -1,6 +1,6 @@
 from flask import Flask
 
-from src import items
+from src import items, search
 from src.extensions import cache, cors
 from src.settings import DevConfig
 
@@ -30,5 +30,9 @@ def register_blueprints(app: Flask):
     """Main Blueprints"""
 
     origins = app.config.get("CORS_ORIGIN_WHITELIST", "*")
+
     cors.init_app(items.views.blueprint, origins=origins)
+    cors.init_app(search.views.blueprint, origins=origins)
+
     app.register_blueprint(items.views.blueprint)
+    app.register_blueprint(search.views.blueprint)
