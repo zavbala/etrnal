@@ -71,7 +71,7 @@
 />
 
 <svelte:head>
-	<title>ETRNAL | Infinity Design</title>
+	<title>ETRNAL | Infinite Design</title>
 </svelte:head>
 
 <Grid children={records} />

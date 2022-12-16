@@ -2,14 +2,13 @@
 	import Grid from '$lib/components/Grid.svelte';
 	import type { Record } from '$lib/types';
 
-	export let data: Record[];
-	$: children = Object.values(data).map((record) => record);
+	export let data: { records: Record[] };
 </script>
 
 <svelte:head>
 	<title>Search</title>
 </svelte:head>
 
-{#key children}
-	<Grid {children} />
+{#key data}
+	<Grid children={data.records} />
 {/key}

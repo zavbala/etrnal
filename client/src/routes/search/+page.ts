@@ -7,6 +7,8 @@ export async function load({ fetch, url }: LoadEvent) {
 	const response = await fetch(`${ENDPOINT}/api/search?${params.toString()}`);
 
 	if (response.ok) {
-		return await response.json();
+		return {
+			records: await response.json()
+		};
 	}
 }
