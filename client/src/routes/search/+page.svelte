@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-	<title>Search</title>
+	<title>Search | ETRNAL</title>
 </svelte:head>
 
 {#key data}
