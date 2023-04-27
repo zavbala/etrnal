@@ -4,7 +4,7 @@ module.exports = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 	theme: {
 		fontFamily: {
-			body: ['Inter', 'sans-serif'],
+			body: ['Inter', 'sans-serif']
 		},
 		extend: {}
 	},

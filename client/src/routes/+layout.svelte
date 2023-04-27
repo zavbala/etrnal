@@ -1,9 +1,14 @@
 <script>
+	import { dev } from '$app/environment';
+	import { page } from '$app/stores';
 	import Controls from '$lib/components/Controls.svelte';
 	import Spotlight from '$lib/components/Spotlight.svelte';
 	import { stored } from '$lib/stores/preview';
+	import { inject } from '@vercel/analytics';
+
 	import '../app.css';
-	import { page } from '$app/stores';
+
+	inject({ mode: dev ? 'development' : 'production' });
 
 	const domain = 'https://etrnal.vercel.app';
 	const title = 'Infinite Design, Inspiration Beyond.';
