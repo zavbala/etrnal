@@ -8,7 +8,6 @@ from furl import furl
 from glom import GlomError, glom
 from gql import Client, gql
 from gql.transport.requests import RequestsHTTPTransport
-
 from parsel import Selector
 
 from . import strings

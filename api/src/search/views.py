@@ -2,9 +2,10 @@ import json
 import random
 
 from flask import Blueprint, jsonify
-from src import settings, utils
 from webargs import fields
 from webargs.flaskparser import use_args
+
+from src import settings, utils
 
 config = settings.Config()
 blueprint = Blueprint("search", __name__)
